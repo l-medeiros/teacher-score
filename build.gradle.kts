@@ -25,8 +25,13 @@ dependencies {
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+
 	// timer lib
 	implementation("joda-time:joda-time:2.10.14")
+
+	// mockk
+	testImplementation("io.mockk:mockk:1.12.4")
+	testImplementation("com.ninja-squad:springmockk:3.1.1")
 }
 
 tasks.withType<KotlinCompile> {
