@@ -8,7 +8,6 @@ import org.joda.time.Months
 import org.joda.time.Years
 import org.springframework.stereotype.Service
 
-
 @Service
 class ServiceTimeEngine : ScoreEngine {
 

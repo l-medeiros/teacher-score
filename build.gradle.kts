@@ -3,9 +3,10 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 plugins {
 	id("org.springframework.boot") version "3.2.5"
 	id("io.spring.dependency-management") version "1.1.4"
-	kotlin("jvm") version "1.9.23"
-	kotlin("plugin.spring") version "1.9.23"
-	kotlin("plugin.jpa") version "1.9.23"
+	kotlin("jvm") version "1.9.21"
+	kotlin("plugin.spring") version "1.9.21"
+	kotlin("plugin.jpa") version "1.9.21"
+	id("io.gitlab.arturbosch.detekt") version "1.23.4"
 }
 
 group = "br.com"
@@ -39,6 +40,10 @@ dependencies {
 	// web - rest api
 	implementation("org.springframework.boot:spring-boot-starter-web")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
+
+	// Lint
+	detekt("io.gitlab.arturbosch.detekt:detekt-formatting:1.23.4")
+	detekt("io.gitlab.arturbosch.detekt:detekt-cli:1.23.4")
 }
 
 tasks.withType<KotlinCompile> {
@@ -50,4 +55,11 @@ tasks.withType<KotlinCompile> {
 
 tasks.withType<Test> {
 	useJUnitPlatform()
+}
+
+detekt {
+	toolVersion = "1.23.4"
+	source.setFrom(files("./"))
+	config.setFrom(files("./detekt-config.yml"))
+	autoCorrect = true
 }

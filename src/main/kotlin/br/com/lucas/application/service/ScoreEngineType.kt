@@ -5,5 +5,5 @@ enum class ScoreEngineType {
     ASSIDUITY,
     COURSES,
     RECYCLING,
-    POSTGRADUATE;
+    POSTGRADUATE
 }

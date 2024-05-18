@@ -11,7 +11,7 @@ class ScoreService(
 
     fun calculate(teacherId: UUID): ScoreReport {
         val teacher = teacherService.find(teacherId)
-        val calculatedScores =  scoreEngines.map { it.calculate(teacher) }
+        val calculatedScores = scoreEngines.map { it.calculate(teacher) }
 
         return ScoreReport(
             teacherId = teacherId,
