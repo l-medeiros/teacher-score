@@ -8,11 +8,11 @@ import org.springframework.stereotype.Service
 @Service
 class AssiduityEngine : ScoreEngine {
 
-    companion object {
-        private const val SCHOOL_DAYS = 200
-        private const val SCHOOL_MONTHS = 10
-        private const val MONTH_BONUS = 2
-        private const val DAY_BONUS = 0.1
+    private companion object {
+        const val SCHOOL_DAYS = 200
+        const val SCHOOL_MONTHS = 10
+        const val MONTH_BONUS = 2
+        const val DAY_BONUS = 0.1
     }
 
     override val scoreEngineType: ScoreEngineType = ScoreEngineType.ASSIDUITY
@@ -24,12 +24,16 @@ class AssiduityEngine : ScoreEngine {
         val workDays = SCHOOL_DAYS - absences.size
         val workMonths = SCHOOL_MONTHS - monthsWithAbsence
 
-        val daysResult = BigDecimal.valueOf(DAY_BONUS) * workDays.toBigDecimal()
-        val monthsResult = MONTH_BONUS.toBigDecimal() * workMonths.toBigDecimal()
+        val daysResult = calculateWorkDaysScore(workDays)
+        val monthsResult = calculateWorkMonthsScore(workMonths)
         val result = daysResult + monthsResult
 
         return ScoreResult(scoreEngineType, result)
     }
+
+    private fun calculateWorkDaysScore(workDays: Int) = BigDecimal.valueOf(DAY_BONUS) * workDays.toBigDecimal()
+
+    private fun calculateWorkMonthsScore(workMonths: Int) = MONTH_BONUS.toBigDecimal() * workMonths.toBigDecimal()
 
     private fun discoverMonthsWithAbsence(absences: List<Absence>): Int = absences.map { it.date.month }.distinct().size
 }

@@ -1,6 +1,6 @@
 package br.com.lucas.domain
 
-import java.sql.Date
+import java.util.Date
 import java.util.UUID
 
 data class Absence(

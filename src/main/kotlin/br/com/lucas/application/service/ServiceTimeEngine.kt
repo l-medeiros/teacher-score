@@ -12,9 +12,9 @@ import org.springframework.stereotype.Service
 @Service
 class ServiceTimeEngine : ScoreEngine {
 
-    companion object {
-        private const val BONUS_PER_SERVICE_MONTH = 1
-        private const val BONUS_PER_SERVICE_YEAR = 5
+    private companion object {
+        const val BONUS_PER_SERVICE_MONTH = 1
+        const val BONUS_PER_SERVICE_YEAR = 5
     }
 
     override val scoreEngineType: ScoreEngineType = ScoreEngineType.SERVICE_TIME
@@ -23,8 +23,8 @@ class ServiceTimeEngine : ScoreEngine {
         val serviceMonths = discoverServiceMonths(teacher.hireDate)
         val serviceYears = discoverServiceYears(teacher.hireDate)
 
-        val serviceMonthsScore = serviceMonths * BONUS_PER_SERVICE_MONTH
-        val serviceYearsScore = serviceYears * BONUS_PER_SERVICE_YEAR
+        val serviceMonthsScore = calculateServiceMonthsScore(serviceMonths)
+        val serviceYearsScore = calculateServiceYearsScore(serviceYears)
         val totalScore = serviceMonthsScore + serviceYearsScore
 
         return ScoreResult(scoreEngineType, totalScore.toBigDecimal())
@@ -39,4 +39,8 @@ class ServiceTimeEngine : ScoreEngine {
         Years
             .yearsBetween(LocalDate.fromDateFields(hireDate), LocalDate.fromDateFields(Date.from(Instant.now())))
             .years
+
+    private fun calculateServiceMonthsScore(serviceMonths: Int) = serviceMonths * BONUS_PER_SERVICE_MONTH
+
+    private fun calculateServiceYearsScore(serviceYears: Int) = serviceYears * BONUS_PER_SERVICE_YEAR
 }

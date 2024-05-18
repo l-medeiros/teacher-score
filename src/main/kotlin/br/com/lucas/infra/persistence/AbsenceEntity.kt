@@ -1,5 +1,6 @@
 package br.com.lucas.infra.persistence
 
+import br.com.lucas.domain.Absence
 import jakarta.persistence.Entity
 import jakarta.persistence.GeneratedValue
 import jakarta.persistence.Id
@@ -14,10 +15,16 @@ import java.util.Date
 data class AbsenceEntity(
     @Id
     @GeneratedValue
-    val id: UUID? = null,
+    val id: UUID,
     val note: String? = null,
     val date: Date,
     @ManyToOne
     @JoinColumn(name = "teacher_id")
     var teacher: TeacherEntity? = null
-)
+) {
+    fun toDomain() = Absence(
+        id = id,
+        note = note,
+        date = date
+    )
+}

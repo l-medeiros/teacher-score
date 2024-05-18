@@ -9,8 +9,8 @@ import org.springframework.stereotype.Service
 @Service
 class RecyclingEngine : ScoreEngine {
 
-    companion object {
-        private const val RECYCLING_COURSE_BONUS = 20
+    private companion object {
+        const val RECYCLING_COURSE_BONUS = 20
     }
 
     override val scoreEngineType: ScoreEngineType = ScoreEngineType.RECYCLING

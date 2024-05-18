@@ -3,6 +3,7 @@ package br.com.lucas.application.service
 import br.com.lucas.domain.Absence
 import br.com.lucas.domain.Course
 import br.com.lucas.domain.Teacher
+import com.ninjasquad.springmockk.MockkBean
 import io.mockk.every
 import io.mockk.mockk
 import java.math.BigDecimal
@@ -19,19 +20,24 @@ class ScoreServiceTest {
     @Autowired
     private lateinit var scoreService: ScoreService
 
+    @MockkBean
+    private lateinit var teacherService: TeacherService
+
     @Test
     fun `calculate should return correct ScoreReport`() {
-        val teacher = buildTeacher()
+        val teacherId = UUID.randomUUID()
+        val teacher = buildTeacher(teacherId)
+        every { teacherService.find(teacherId) } returns teacher
 
-        val scoreReport = scoreService.calculate(teacher)
+        val scoreReport = scoreService.calculate(teacherId)
 
         assertEquals(scoreReport.teacherId, teacher.id)
         assertEquals(scoreReport.scores.size, 5)
         assertEquals(scoreReport.result, BigDecimal.valueOf(568.0))
     }
 
-    private fun buildTeacher() = Teacher(
-        id = UUID.randomUUID(),
+    private fun buildTeacher(id: UUID) = Teacher(
+        id = id,
         name = "test teacher",
         hireDate = DateTime.now().minusYears(3).toDate(),
         courses = buildCourses(),

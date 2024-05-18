@@ -1,5 +1,6 @@
 package br.com.lucas.infra.persistence
 
+import br.com.lucas.domain.Teacher
 import jakarta.persistence.Entity
 import jakarta.persistence.GeneratedValue
 import jakarta.persistence.Id
@@ -21,4 +22,12 @@ data class TeacherEntity(
     var courses: MutableList<CourseEntity> = mutableListOf(),
     @OneToMany(mappedBy = "teacher", cascade = [CascadeType.ALL], orphanRemoval = true)
     var absences: MutableList<AbsenceEntity> = mutableListOf()
-)
+) {
+    fun toDomain() = Teacher(
+        id = id,
+        name = name,
+        hireDate = hireDate,
+        courses = courses.map { it.toDomain() },
+        absences = absences.map { it.toDomain() }
+    )
+}

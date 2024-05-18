@@ -1,5 +1,6 @@
 package br.com.lucas.infra.persistence
 
+import br.com.lucas.domain.Course
 import jakarta.persistence.Entity
 import jakarta.persistence.GeneratedValue
 import jakarta.persistence.Id
@@ -23,4 +24,13 @@ data class CourseEntity(
     @ManyToOne
     @JoinColumn(name = "teacher_id")
     var teacher: TeacherEntity? = null
-)
+) {
+    fun toDomain() = Course(
+        id = id,
+        description = description,
+        postgraduate = postgraduate,
+        recycling = recycling,
+        hours = hours,
+        date = date
+    )
+}

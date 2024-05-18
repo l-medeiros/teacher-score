@@ -7,8 +7,8 @@ import org.springframework.stereotype.Service
 @Service
 class PostgraduateEngine : ScoreEngine {
 
-    companion object {
-        private const val BONUS_PER_HOUR = 2
+    private companion object {
+        const val BONUS_PER_HOUR = 2
     }
 
     override val scoreEngineType: ScoreEngineType = ScoreEngineType.POSTGRADUATE
