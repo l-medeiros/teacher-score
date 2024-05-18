@@ -20,8 +20,8 @@ repositories {
 }
 
 dependencies {
-	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
-	implementation("org.flywaydb:flyway-core")
+//	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+//	implementation("org.flywaydb:flyway-core")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
@@ -32,6 +32,10 @@ dependencies {
 	// mockk
 	testImplementation("io.mockk:mockk:1.12.4")
 	testImplementation("com.ninja-squad:springmockk:3.1.1")
+
+	// web - rest api
+	implementation("org.springframework.boot:spring-boot-starter-web")
+	testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
 
 tasks.withType<KotlinCompile> {
