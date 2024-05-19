@@ -17,7 +17,7 @@ class AssiduityEngine : ScoreEngine {
 
     override val scoreEngineType: ScoreEngineType = ScoreEngineType.ASSIDUITY
 
-    override fun calculate(teacher: Teacher): ScoreResult {
+    override fun calculate(teacher: Teacher): Score {
         val absences = teacher.absences
         val monthsWithAbsence = discoverMonthsWithAbsence(absences)
 
@@ -28,7 +28,7 @@ class AssiduityEngine : ScoreEngine {
         val monthsResult = calculateWorkMonthsScore(workMonths)
         val result = daysResult + monthsResult
 
-        return ScoreResult(scoreEngineType, result)
+        return Score(scoreEngineType, result)
     }
 
     private fun calculateWorkDaysScore(workDays: Int) = BigDecimal.valueOf(DAY_BONUS) * workDays.toBigDecimal()

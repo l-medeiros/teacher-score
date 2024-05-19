@@ -1,5 +1,6 @@
 package br.com.lucas.adapters.controller
 
+import br.com.lucas.application.service.ScoreReportService
 import br.com.lucas.application.service.TeacherService
 import br.com.lucas.utils.buildTeacher
 import com.ninjasquad.springmockk.MockkBean
@@ -11,6 +12,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers
 
 @AutoConfigureMockMvc
@@ -19,17 +21,27 @@ class ScoreControllerTest {
     @Autowired
     lateinit var mockMvc: MockMvc
 
+    @MockkBean(relaxed = true)
+    lateinit var scoreReportService: ScoreReportService
+
     @MockkBean
     private lateinit var teacherService: TeacherService
 
     @Test
-    fun `returns 200 status when calculate for some teacher`() {
+    fun `returns 201 status when calculate for some teacher`() {
         val teacherId = UUID.randomUUID()
         val teacher = buildTeacher(teacherId)
         every { teacherService.find(teacherId) } returns teacher
 
         mockMvc
             .perform(post("/score/$teacherId"))
+            .andExpect(MockMvcResultMatchers.status().isCreated)
+    }
+
+    @Test
+    fun `returns 200 status when find all reports`() {
+        mockMvc
+            .perform(get("/score/reports"))
             .andExpect(MockMvcResultMatchers.status().isOk)
     }
 }

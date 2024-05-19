@@ -6,5 +6,5 @@ interface ScoreEngine {
 
     val scoreEngineType: ScoreEngineType
 
-    fun calculate(teacher: Teacher): ScoreResult
+    fun calculate(teacher: Teacher): Score
 }

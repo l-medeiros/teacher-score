@@ -6,7 +6,8 @@ import org.springframework.stereotype.Service
 @Service
 class ScoreService(
     private val scoreEngines: List<ScoreEngine>,
-    private val teacherService: TeacherService
+    private val teacherService: TeacherService,
+    private val scoreReportService: ScoreReportService
 ) {
 
     fun calculate(teacherId: UUID): ScoreReport {
@@ -17,6 +18,8 @@ class ScoreService(
             teacherId = teacherId,
             scores = calculatedScores,
             result = calculatedScores.sumOf { it.result }
-        )
+        ).also { scoreReport ->
+            scoreReportService.save(scoreReport, teacher)
+        }
     }
 }

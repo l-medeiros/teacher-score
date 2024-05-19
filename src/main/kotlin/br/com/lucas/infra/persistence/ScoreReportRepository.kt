@@ -5,4 +5,4 @@ import org.springframework.stereotype.Repository
 import java.util.UUID
 
 @Repository
-interface AbsenceRepository : JpaRepository<AbsenceEntity, UUID>
+interface ScoreReportRepository : JpaRepository<ScoreReportEntity, UUID>

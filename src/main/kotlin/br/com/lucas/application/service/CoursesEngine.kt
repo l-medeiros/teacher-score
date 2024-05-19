@@ -17,12 +17,12 @@ class CoursesEngine : ScoreEngine {
 
     override val scoreEngineType: ScoreEngineType = ScoreEngineType.COURSES
 
-    override fun calculate(teacher: Teacher): ScoreResult {
+    override fun calculate(teacher: Teacher): Score {
         val validCourses = getValidCourses(teacher.courses)
         val validCourseScore = validCourses.sumOf { it.hours * BONUS_PER_HOUR }
         val effectiveScore = validCourseScore.coerceAtMost(LIMIT_SCORE)
 
-        return ScoreResult(scoreEngineType, BigDecimal(effectiveScore))
+        return Score(scoreEngineType, BigDecimal(effectiveScore))
     }
 
     private fun getValidCourses(courses: List<Course>) =

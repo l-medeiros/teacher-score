@@ -16,6 +16,9 @@ class ScoreServiceTest {
     @Autowired
     private lateinit var scoreService: ScoreService
 
+    @MockkBean(relaxed = true)
+    lateinit var scoreReportService: ScoreReportService
+
     @MockkBean
     private lateinit var teacherService: TeacherService
 

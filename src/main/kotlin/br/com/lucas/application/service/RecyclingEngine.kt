@@ -15,11 +15,11 @@ class RecyclingEngine : ScoreEngine {
 
     override val scoreEngineType: ScoreEngineType = ScoreEngineType.RECYCLING
 
-    override fun calculate(teacher: Teacher): ScoreResult {
+    override fun calculate(teacher: Teacher): Score {
         val validCourses = teacher.courses.filter { it.recycling && isDateCourseValid(it.date) }
         val validCoursesScore = validCourses.size * RECYCLING_COURSE_BONUS
 
-        return ScoreResult(scoreEngineType, BigDecimal(validCoursesScore))
+        return Score(scoreEngineType, BigDecimal(validCoursesScore))
     }
 
     private fun isDateCourseValid(date: Date): Boolean {

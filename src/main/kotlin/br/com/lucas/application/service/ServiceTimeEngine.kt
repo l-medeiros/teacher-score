@@ -18,7 +18,7 @@ class ServiceTimeEngine : ScoreEngine {
 
     override val scoreEngineType: ScoreEngineType = ScoreEngineType.SERVICE_TIME
 
-    override fun calculate(teacher: Teacher): ScoreResult {
+    override fun calculate(teacher: Teacher): Score {
         val serviceMonths = discoverServiceMonths(teacher.hireDate)
         val serviceYears = discoverServiceYears(teacher.hireDate)
 
@@ -26,7 +26,7 @@ class ServiceTimeEngine : ScoreEngine {
         val serviceYearsScore = calculateServiceYearsScore(serviceYears)
         val totalScore = serviceMonthsScore + serviceYearsScore
 
-        return ScoreResult(scoreEngineType, totalScore.toBigDecimal())
+        return Score(scoreEngineType, totalScore.toBigDecimal())
     }
 
     private fun discoverServiceMonths(hireDate: Date): Int =

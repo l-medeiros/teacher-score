@@ -21,8 +21,18 @@ data class TeacherEntity(
     @OneToMany(mappedBy = "teacher", cascade = [CascadeType.ALL], orphanRemoval = true)
     var courses: MutableList<CourseEntity> = mutableListOf(),
     @OneToMany(mappedBy = "teacher", cascade = [CascadeType.ALL], orphanRemoval = true)
-    var absences: MutableList<AbsenceEntity> = mutableListOf()
+    var absences: MutableList<AbsenceEntity> = mutableListOf(),
+    @OneToMany(mappedBy = "teacher", cascade = [CascadeType.ALL], orphanRemoval = true)
+    var reports: MutableList<ScoreReportEntity> = mutableListOf()
 ) {
+    companion object {
+        fun fromDomain(teacher: Teacher) = TeacherEntity(
+            id = teacher.id,
+            name = teacher.name,
+            hireDate = teacher.hireDate
+        )
+    }
+
     fun toDomain() = Teacher(
         id = id,
         name = name,

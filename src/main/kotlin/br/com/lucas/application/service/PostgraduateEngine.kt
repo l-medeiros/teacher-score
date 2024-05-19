@@ -13,10 +13,10 @@ class PostgraduateEngine : ScoreEngine {
 
     override val scoreEngineType: ScoreEngineType = ScoreEngineType.POSTGRADUATE
 
-    override fun calculate(teacher: Teacher): ScoreResult {
+    override fun calculate(teacher: Teacher): Score {
         val validCourses = teacher.courses.filter { it.postgraduate }
         val validCoursesScore = validCourses.sumOf { it.hours * BONUS_PER_HOUR }
 
-        return ScoreResult(scoreEngineType, BigDecimal(validCoursesScore))
+        return Score(scoreEngineType, BigDecimal(validCoursesScore))
     }
 }
