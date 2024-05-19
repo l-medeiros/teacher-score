@@ -1,4 +1,4 @@
-package br.com.lucas.infra.persistence
+package br.com.lucas.adapters.persistence
 
 import br.com.lucas.domain.Course
 import jakarta.persistence.Entity

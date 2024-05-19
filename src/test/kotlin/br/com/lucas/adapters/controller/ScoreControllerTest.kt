@@ -24,7 +24,7 @@ class ScoreControllerTest {
     @MockkBean(relaxed = true)
     lateinit var scoreReportService: ScoreReportService
 
-    @MockkBean
+    @MockkBean(relaxed = true)
     private lateinit var teacherService: TeacherService
 
     @Test
@@ -43,5 +43,12 @@ class ScoreControllerTest {
         mockMvc
             .perform(get("/score/reports"))
             .andExpect(MockMvcResultMatchers.status().isOk)
+    }
+
+    @Test
+    fun `returns 202 status when request async score calculation`() {
+        mockMvc
+            .perform(post("/score"))
+            .andExpect(MockMvcResultMatchers.status().isAccepted)
     }
 }

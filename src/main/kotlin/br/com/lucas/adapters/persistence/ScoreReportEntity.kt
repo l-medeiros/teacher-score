@@ -1,4 +1,4 @@
-package br.com.lucas.infra.persistence
+package br.com.lucas.adapters.persistence
 
 import br.com.lucas.application.service.ScoreReport
 import br.com.lucas.domain.Teacher

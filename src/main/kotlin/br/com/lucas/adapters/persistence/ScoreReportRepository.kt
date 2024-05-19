@@ -1,8 +1,8 @@
-package br.com.lucas.infra.persistence
+package br.com.lucas.adapters.persistence
 
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.stereotype.Repository
 import java.util.UUID
 
 @Repository
-interface TeacherRepository : JpaRepository<TeacherEntity, UUID>
+interface ScoreReportRepository : JpaRepository<ScoreReportEntity, UUID>

@@ -1,8 +1,8 @@
 package br.com.lucas.application.service
 
 import br.com.lucas.domain.Teacher
-import br.com.lucas.infra.persistence.ScoreReportEntity
-import br.com.lucas.infra.persistence.ScoreReportRepository
+import br.com.lucas.adapters.persistence.ScoreReportEntity
+import br.com.lucas.adapters.persistence.ScoreReportRepository
 import org.springframework.stereotype.Component
 
 @Component

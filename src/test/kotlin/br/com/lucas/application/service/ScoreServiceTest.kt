@@ -3,6 +3,7 @@ package br.com.lucas.application.service
 import br.com.lucas.utils.buildTeacher
 import com.ninjasquad.springmockk.MockkBean
 import io.mockk.every
+import io.mockk.verify
 import java.math.BigDecimal
 import java.util.UUID
 import org.junit.jupiter.api.Assertions.assertEquals
@@ -23,7 +24,7 @@ class ScoreServiceTest {
     private lateinit var teacherService: TeacherService
 
     @Test
-    fun `calculate should return correct ScoreReport`() {
+    fun `return correct ScoreReport and save it when calculate`() {
         val teacherId = UUID.randomUUID()
         val teacher = buildTeacher(teacherId)
         every { teacherService.find(teacherId) } returns teacher
@@ -33,5 +34,17 @@ class ScoreServiceTest {
         assertEquals(scoreReport.teacherId, teacher.id)
         assertEquals(scoreReport.scores.size, 5)
         assertEquals(scoreReport.result, BigDecimal.valueOf(568.0))
+        verify { scoreReportService.save(scoreReport, teacher) }
+    }
+
+    @Test
+    fun `calculate for multiple teachers and save when calculate async correct ScoreReport`() {
+        val teacherId = UUID.randomUUID()
+        val teacher = buildTeacher(teacherId)
+        every { teacherService.findAll() } returns listOf(teacher, teacher)
+
+        scoreService.calculateAsync()
+
+        verify(exactly = 2) { scoreReportService.save(any(), teacher) }
     }
 }
