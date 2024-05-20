@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.ResponseStatus
 import org.springframework.web.bind.annotation.RestController
 
@@ -33,5 +34,7 @@ class ScoreController(
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/reports")
-    fun findReports(): List<ScoreReport> = scoreReportService.findAll()
+    fun findReports(
+        @RequestParam("teacherId", required = false) teacherId: UUID? = null,
+    ): List<ScoreReport> = scoreReportService.find(teacherId)
 }

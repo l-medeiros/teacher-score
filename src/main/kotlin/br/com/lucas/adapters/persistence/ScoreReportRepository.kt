@@ -5,4 +5,7 @@ import org.springframework.stereotype.Repository
 import java.util.UUID
 
 @Repository
-interface ScoreReportRepository : JpaRepository<ScoreReportEntity, UUID>
+interface ScoreReportRepository : JpaRepository<ScoreReportEntity, UUID> {
+
+    fun findByTeacherId(teacherId: UUID): ScoreReportEntity?
+}
