@@ -1,4 +1,4 @@
-package br.com.lucas.application.service
+package br.com.lucas.domain
 
 import java.math.BigDecimal
 import java.util.UUID

@@ -1,7 +1,7 @@
 package br.com.lucas.adapters.controller
 
 import br.com.lucas.adapters.queue.publisher.EventPublisher
-import br.com.lucas.application.service.ScoreReport
+import br.com.lucas.domain.ScoreReport
 import br.com.lucas.application.service.ScoreReportService
 import br.com.lucas.application.service.ScoreService
 import br.com.lucas.domain.AsyncScoreRequestedEvent

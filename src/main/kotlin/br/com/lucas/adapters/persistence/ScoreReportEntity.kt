@@ -1,6 +1,6 @@
 package br.com.lucas.adapters.persistence
 
-import br.com.lucas.application.service.ScoreReport
+import br.com.lucas.domain.ScoreReport
 import br.com.lucas.domain.Teacher
 import jakarta.persistence.Column
 import jakarta.persistence.Entity

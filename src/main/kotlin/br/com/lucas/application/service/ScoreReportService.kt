@@ -3,6 +3,7 @@ package br.com.lucas.application.service
 import br.com.lucas.domain.Teacher
 import br.com.lucas.adapters.persistence.ScoreReportEntity
 import br.com.lucas.adapters.persistence.ScoreReportRepository
+import br.com.lucas.domain.ScoreReport
 import java.util.UUID
 import org.springframework.stereotype.Component
 

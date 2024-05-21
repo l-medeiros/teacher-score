@@ -1,5 +1,6 @@
 package br.com.lucas.application.service
 
+import br.com.lucas.domain.Score
 import br.com.lucas.domain.Teacher
 
 interface ScoreEngine {

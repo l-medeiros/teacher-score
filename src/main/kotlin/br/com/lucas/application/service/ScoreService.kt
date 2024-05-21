@@ -1,5 +1,7 @@
 package br.com.lucas.application.service
 
+import br.com.lucas.domain.Score
+import br.com.lucas.domain.ScoreReport
 import br.com.lucas.domain.Teacher
 import java.util.UUID
 import org.springframework.stereotype.Service
